@@ -97,7 +97,7 @@ Com base nessas informações, o sistema define automaticamente qual portal de c
 
 🌐 Aplicação online (GitHub Pages):
 
-[https://gustavo-vf.github.io/redirecionador-sefaz](https://gustavo-vf.github.io/link-sefaz)
+[https://gustavo-vf.github.io/redirecionador-sefaz](https://gustavo-vf.github.io/redirecionador-sefaz)
 
 ---
 
