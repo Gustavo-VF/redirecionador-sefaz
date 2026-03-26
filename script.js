@@ -409,5 +409,5 @@ function escreverMensage(msg) {
     }
     tempoM = setTimeout(() => {
         mensagem.style.display = "none";
-    }, 8000);
+    }, 1000);
 }
