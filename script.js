@@ -331,7 +331,7 @@ document.getElementById("abrirLink2").onclick = function () {
     }
     tempo2 = setTimeout(() => {
 
-    }, 3000);
+    }, 1000);
 
 }
 
@@ -360,7 +360,7 @@ document.getElementById("copiarChave").onclick = async function () {
     }
     tempo = setTimeout(() => {
         document.getElementById("mensagem").style.display = "none";
-    }, 3000);
+    }, 1000);
 
 }
 
@@ -388,7 +388,7 @@ document.getElementById("copiarChave1").onclick = async function () {
     }
     tempo = setTimeout(() => {
         document.getElementById("mensagem").style.display = "none";
-    }, 4000);
+    }, 1000);
 
 }
 
@@ -409,5 +409,5 @@ function escreverMensage(msg) {
     }
     tempoM = setTimeout(() => {
         mensagem.style.display = "none";
-    }, 1000);
+    }, 10);
 }
