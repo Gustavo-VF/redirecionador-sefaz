@@ -251,14 +251,14 @@ document.getElementById("abrirLink").onclick = function () {
         } catch (E) {
             escreverMensage(msgE);
         }
-    }, 1500);
+    }, 10);
 
     if (tempo2) {
         clearTimeout(tempo2);
     }
     tempo2 = setTimeout(() => {
 
-    }, 3000);
+    }, 10);
 
 }
 
@@ -291,14 +291,14 @@ document.getElementById("abrirLink1").onclick = function () {
             mensagem.textContent = msgE;
             document.getElementById("mensagem").style.display = "block";
         }
-    }, 1500);
+    }, 10);
 
     if (tempo2) {
         clearTimeout(tempo2);
     }
     tempo2 = setTimeout(() => {
 
-    }, 3000);
+    }, 10);
 }
 
 document.getElementById("abrirLink2").onclick = function () {
@@ -322,7 +322,7 @@ document.getElementById("abrirLink2").onclick = function () {
             mensagem.textContent = msgE;
             document.getElementById("mensagem").style.display = "block";
         }
-    }, 1500);
+    }, 10);
 
 
 
@@ -331,7 +331,7 @@ document.getElementById("abrirLink2").onclick = function () {
     }
     tempo2 = setTimeout(() => {
 
-    }, 1000);
+    }, 10);
 
 }
 
@@ -360,7 +360,7 @@ document.getElementById("copiarChave").onclick = async function () {
     }
     tempo = setTimeout(() => {
         document.getElementById("mensagem").style.display = "none";
-    }, 1000);
+    }, 10);
 
 }
 
@@ -388,7 +388,7 @@ document.getElementById("copiarChave1").onclick = async function () {
     }
     tempo = setTimeout(() => {
         document.getElementById("mensagem").style.display = "none";
-    }, 1000);
+    }, 10);
 
 }
 
