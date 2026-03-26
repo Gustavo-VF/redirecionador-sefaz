@@ -233,33 +233,19 @@ function verificar() {
 
 document.getElementById("abrirLink").onclick = function () {
 
-    const msg = "Carregando link ...";
-    const msgE = "Erro ao abrir apagina";
+    const msgE = "Erro ao abrir a página";
     document.getElementById("mensagem").style.display = "none";
-    escreverMensage(msg);
 
-    if (tempo) {
-        clearTimeout(tempo);
+    try {
+        let chave = echave.value.replace(/[^0-9]/g, '');
+        const url = link.href;
+
+        navigator.clipboard.writeText(chave);
+        window.open(url, '_blank');
+
+    } catch (E) {
+        escreverMensage(msgE);
     }
-    tempo = setTimeout(() => {
-        try {
-            let chave = echave.value.replace(/[^0-9]/g, '');
-            const url = link.href;
-            navigator.clipboard.writeText(chave);
-            window.open(url, '_blank');
-
-        } catch (E) {
-            escreverMensage(msgE);
-        }
-    }, 10);
-
-    if (tempo2) {
-        clearTimeout(tempo2);
-    }
-    tempo2 = setTimeout(() => {
-
-    }, 10);
-
 }
 
 
@@ -268,71 +254,36 @@ document.getElementById("abrirLink").onclick = function () {
 
 document.getElementById("abrirLink1").onclick = function () {
 
-    const msg = "Carregando link ...";
-    const msgE = "Erro ao abrir apagina";
+    const msgE = "Erro ao abrir a página";
     document.getElementById("mensagem").style.display = "none";
-    mensagem.textContent = msg;
-    document.getElementById("mensagem").style.display = "block";
 
-    if (tempo) {
-        clearTimeout(tempo);
+    try {
+        let chave = echave.value.replace(/[^0-9]/g, '');
+        const url = link21.href;
+
+        navigator.clipboard.writeText(chave);
+        window.open(url, '_blank');
+
+    } catch (E) {
+        escreverMensage(msgE);
     }
-    tempo = setTimeout(() => {
-        try {
-
-            let chave = echave.value.replace(/[^0-9]/g, '');
-            const url = link21.href;
-            navigator.clipboard.writeText(chave);
-            window.open(url, '_blank');
-            document.getElementById("mensagem").style.display = "none";
-
-
-        } catch (E) {
-            mensagem.textContent = msgE;
-            document.getElementById("mensagem").style.display = "block";
-        }
-    }, 10);
-
-    if (tempo2) {
-        clearTimeout(tempo2);
-    }
-    tempo2 = setTimeout(() => {
-
-    }, 10);
 }
 
 document.getElementById("abrirLink2").onclick = function () {
-    const msg = "Carregando link ...";
-    const msgE = "Erro ao abrir apagina";
+
+    const msgE = "Erro ao abrir a página";
     document.getElementById("mensagem").style.display = "none";
-    mensagem.textContent = msg;
-    document.getElementById("mensagem").style.display = "block";
 
-    if (tempo) {
-        clearTimeout(tempo);
+    try {
+        let chave = echave.value.replace(/[^0-9]/g, '');
+        const url2 = link22.href;
+
+        navigator.clipboard.writeText(chave);
+        window.open(url2, '_blank');
+
+    } catch (E) {
+        escreverMensage(msgE);
     }
-    tempo = setTimeout(() => {
-        try {
-            let chave = echave.value.replace(/[^0-9]/g, '');
-            const url2 = link22.href;
-            navigator.clipboard.writeText(chave);
-            window.open(url2, '_blank');
-            document.getElementById("mensagem").style.display = "none";
-        } catch (E) {
-            mensagem.textContent = msgE;
-            document.getElementById("mensagem").style.display = "block";
-        }
-    }, 10);
-
-
-
-    if (tempo2) {
-        clearTimeout(tempo2);
-    }
-    tempo2 = setTimeout(() => {
-
-    }, 10);
-
 }
 
 let tempo = null;
