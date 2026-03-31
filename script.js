@@ -288,46 +288,59 @@ document.getElementById("abrirLink2").onclick = function () {
 
 let tempo = null;
 
-document.getElementById("copiarChave").onclick = function () {
+document.getElementById("copiarChave").onclick = async function () {
 
+    const msg1 = ("Chave copiada com sucesso");
+    const msg2 = ("erro ao copiar");
+    document.getElementById("mensagem").style.display = "none";
 
-    const msg1 = "Chave copiada com sucesso";
-    const msg2 = "Erro ao copiar";
-
-    const chave = echave.value.replace(/[^0-9]/g, '');
-    const mensagem = document.getElementById("mensagem");
-
-    mensagem.style.display = "none";
-
+    let chave = echave.value.replace(/[^0-9]/g, '');
     try {
         await navigator.clipboard.writeText(chave);
         mensagem.textContent = msg1;
+
     } catch (error) {
         mensagem.textContent = msg2;
+
     }
 
-    mensagem.style.display = "block";
+    document.getElementById("mensagem").style.display = "block";
+
+    if (tempo) {
+        clearTimeout(tempo);
+    }
+    tempo = setTimeout(() => {
+        document.getElementById("mensagem").style.display = "none";
+    }, 3000);
+
 }
 
 
-document.getElementById("copiarChave1").onclick = function () {
+document.getElementById("copiarChave1").onclick = async function () {
 
-    const msg1 = "Chave copiada com sucesso";
-    const msg2 = "Erro ao copiar";
-
-    const chave = echave.value.replace(/[^0-9]/g, '');
-    const mensagem = document.getElementById("mensagem");
-
-    mensagem.style.display = "none";
-
+    const msg1 = ("Chave copiada com sucesso");
+    const msg2 = ("erro ao copiar");
+    document.getElementById("mensagem").style.display = "none";
+    const echave = document.getElementById("chave");
+    let chave = echave.value.replace(/[^0-9]/g, '');
     try {
         await navigator.clipboard.writeText(chave);
         mensagem.textContent = msg1;
+
     } catch (error) {
         mensagem.textContent = msg2;
+
     }
 
-    mensagem.style.display = "block";
+    document.getElementById("mensagem").style.display = "block";
+
+    if (tempo) {
+        clearTimeout(tempo);
+    }
+    tempo = setTimeout(() => {
+        document.getElementById("mensagem").style.display = "none";
+    }, 3000);
+
 }
 
 document.getElementById("pSefaz").onclick = function () {
