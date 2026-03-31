@@ -288,59 +288,45 @@ document.getElementById("abrirLink2").onclick = function () {
 
 let tempo = null;
 
-document.getElementById("copiarChave").onclick = async function () {
+async function copiarChave() {
 
-    const msg1 = ("Chave copiada com sucesso");
-    const msg2 = ("erro ao copiar");
-    document.getElementById("mensagem").style.display = "none";
+    const msg1 = "Chave copiada com sucesso";
+    const msg2 = "Erro ao copiar";
 
-    let chave = echave.value.replace(/[^0-9]/g, '');
+    const chave = echave.value.replace(/[^0-9]/g, '');
+    const mensagem = document.getElementById("mensagem");
+
+    mensagem.style.display = "none";
+
     try {
         await navigator.clipboard.writeText(chave);
         mensagem.textContent = msg1;
-
     } catch (error) {
         mensagem.textContent = msg2;
-
     }
 
-    document.getElementById("mensagem").style.display = "block";
-
-    if (tempo) {
-        clearTimeout(tempo);
-    }
-    tempo = setTimeout(() => {
-        document.getElementById("mensagem").style.display = "none";
-    }, 10);
-
+    mensagem.style.display = "block";
 }
 
 
-document.getElementById("copiarChave1").onclick = async function () {
+async function copiarChave1() {
 
-    const msg1 = ("Chave copiada com sucesso");
-    const msg2 = ("erro ao copiar");
-    document.getElementById("mensagem").style.display = "none";
-    const echave = document.getElementById("chave");
-    let chave = echave.value.replace(/[^0-9]/g, '');
+    const msg1 = "Chave copiada com sucesso";
+    const msg2 = "Erro ao copiar";
+
+    const chave = echave.value.replace(/[^0-9]/g, '');
+    const mensagem = document.getElementById("mensagem");
+
+    mensagem.style.display = "none";
+
     try {
         await navigator.clipboard.writeText(chave);
         mensagem.textContent = msg1;
-
     } catch (error) {
         mensagem.textContent = msg2;
-
     }
 
-    document.getElementById("mensagem").style.display = "block";
-
-    if (tempo) {
-        clearTimeout(tempo);
-    }
-    tempo = setTimeout(() => {
-        document.getElementById("mensagem").style.display = "none";
-    }, 10);
-
+    mensagem.style.display = "block";
 }
 
 document.getElementById("pSefaz").onclick = function () {
