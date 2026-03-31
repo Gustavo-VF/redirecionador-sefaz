@@ -288,7 +288,8 @@ document.getElementById("abrirLink2").onclick = function () {
 
 let tempo = null;
 
-async function copiarChave() {
+document.getElementById("copiarChave").onclick = function () {
+
 
     const msg1 = "Chave copiada com sucesso";
     const msg2 = "Erro ao copiar";
@@ -309,7 +310,7 @@ async function copiarChave() {
 }
 
 
-async function copiarChave1() {
+document.getElementById("copiarChave1").onclick = function () {
 
     const msg1 = "Chave copiada com sucesso";
     const msg2 = "Erro ao copiar";
