@@ -1,23 +1,3 @@
-const bColar = document.getElementById("bColar");
-
-bColar.onclick = async () => {
-
-    try {
-        const texto = await navigator.clipboard.readText();
-
-        echave.value = texto.replace(/[^0-9]/g, '');
-
-        echave.dispatchEvent(new Event("input"));
-
-
-    } catch (erro) {
-        alert("Não foi possível colar o conteúdo");
-    }
-}
-
-
-
-
 const universalLink = "https://www.nfe.fazenda.gov.br/portal/consultaRecaptcha.aspx?tipoConsulta=resumo&tipoConteudo=7PhJ%20gAVw2g=";
 const universalLink2 = "https://meudanfe.com.br/#"
 
@@ -126,6 +106,57 @@ const estadoNomes = {
     "52": "Goiás",
     "53": "Distrito Federal"
 };
+
+const bColar = document.getElementById("bColar");
+
+bColar.onclick = async () => {
+
+    try {
+        const texto = await navigator.clipboard.readText();
+
+        echave.value = texto.replace(/[^0-9]/g, '');
+
+        echave.dispatchEvent(new Event("input"));
+
+
+    } catch (erro) {
+        alert("Não foi possível colar o conteúdo");
+    }
+}
+
+// --- FUNÇÃO PARA PROCESSAR COM IA ---
+async function lerNotaComIA(arquivo) {
+    if (!arquivo) return;
+    statusOcr.textContent = "⏳ IA analisando nota... aguarde.";
+    statusOcr.style.color = "blue";
+
+    try {
+        const urlImagem = URL.createObjectURL(arquivo);
+        
+        // Chama a IA definida no HTML
+        const respostaIA = await window.perguntarIA(urlImagem);
+        URL.revokeObjectURL(urlImagem);
+
+        // Limpa a resposta para pegar apenas os 44 números
+        const chaveLimpa = respostaIA.replace(/[^0-9]/g, '');
+        const match = chaveLimpa.match(/\d{44}/);
+
+        if (match) {
+            echave.value = match[0];
+            statusOcr.textContent = "✅ Chave extraída com sucesso!";
+            statusOcr.style.color = "green";
+            verificar(); // Chama sua função original de links
+        } else {
+            statusOcr.textContent = "❌ IA não localizou a chave de 44 dígitos.";
+            statusOcr.style.color = "red";
+        }
+    } catch (erro) {
+        console.error(erro);
+        statusOcr.textContent = "⚠️ Erro ao carregar motor de IA.";
+    }
+}
+
+
 
 
 const echave = document.getElementById("chave");
