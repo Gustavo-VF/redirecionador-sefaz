@@ -1,3 +1,23 @@
+const bColar = document.getElementById("bColar");
+
+bColar.onclick = async () => {
+
+    try {
+        const texto = await navigator.clipboard.readText();
+
+        echave.value = texto.replace(/[^0-9]/g, '');
+
+        echave.dispatchEvent(new Event("input"));
+
+
+    } catch (erro) {
+        alert("Não foi possível colar o conteúdo");
+    }
+}
+
+
+
+
 const universalLink = "https://www.nfe.fazenda.gov.br/portal/consultaRecaptcha.aspx?tipoConsulta=resumo&tipoConteudo=7PhJ%20gAVw2g=";
 const universalLink2 = "https://meudanfe.com.br/#"
 
@@ -106,109 +126,6 @@ const estadoNomes = {
     "52": "Goiás",
     "53": "Distrito Federal"
 };
-
-const bColar = document.getElementById("bColar");
-
-bColar.onclick = async () => {
-
-    try {
-        const texto = await navigator.clipboard.readText();
-
-        echave.value = texto.replace(/[^0-9]/g, '');
-
-        echave.dispatchEvent(new Event("input"));
-
-
-    } catch (erro) {
-        alert("Não foi possível colar o conteúdo");
-    }
-}
-
-// --- VARIÁREIS DE INTERFACE ---
-const echave = document.getElementById("chave");
-const statusOcr = document.getElementById("statusOcr");
-const inputImagem = document.getElementById("inputImagem");
-const dropZone = document.getElementById("dropZone");
-const bColarImagem = document.getElementById("bColarImagem");
-const bColar = document.getElementById("bColar");
-
-// --- CONFIGURAÇÕES DOS LINKS ---
-const universalLink = "https://fazenda.gov.br";
-const universalLink2 = "https://meudanfe.com.br";
-
-// --- FUNÇÃO PARA PROCESSAR COM IA ---
-async function lerNotaComIA(arquivo) {
-    if (!arquivo) return;
-    statusOcr.textContent = "⏳ IA analisando nota... aguarde.";
-    statusOcr.style.color = "blue";
-    try {
-        const urlImagem = URL.createObjectURL(arquivo);
-        // Chama a IA definida no HTML
-        const respostaIA = await window.perguntarIA(urlImagem);
-        URL.revokeObjectURL(urlImagem);
-
-        const chaveLimpa = respostaIA.replace(/[^0-9]/g, '');
-        const match = chaveLimpa.match(/\d{44}/);
-
-        if (match) {
-            echave.value = match[0];
-            statusOcr.textContent = "✅ Chave extraída com sucesso!";
-            statusOcr.style.color = "green";
-            verificar();
-        } else {
-            statusOcr.textContent = "❌ IA não localizou a chave de 44 dígitos.";
-            statusOcr.style.color = "red";
-        }
-    } catch (erro) {
-        console.error(erro);
-        statusOcr.textContent = "⚠️ Erro ao carregar motor de IA.";
-    }
-}
-
-// --- EVENTOS DE INTERAÇÃO (IMPORTANTE) ---
-
-// Arrastar e Soltar
-['dragover', 'dragleave', 'drop'].forEach(e => {
-    dropZone.addEventListener(e, (ev) => { ev.preventDefault(); ev.stopPropagation(); });
-});
-dropZone.addEventListener('dragover', () => dropZone.classList.add('dragover'));
-dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
-dropZone.addEventListener('drop', (e) => {
-    dropZone.classList.remove('dragover');
-    lerNotaComIA(e.dataTransfer.files[0]);
-});
-
-// Botão Colar Imagem
-bColarImagem.onclick = async () => {
-    try {
-        const itens = await navigator.clipboard.read();
-        for (const item of itens) {
-            if (item.types.some(t => t.startsWith('image/'))) {
-                const blob = await item.getType(item.types.find(t => t.startsWith('image/')));
-                lerNotaComIA(blob);
-                return;
-            }
-        }
-    } catch (e) { alert("Use Ctrl+V para colar a imagem diretamente."); }
-};
-
-// Seleção manual de arquivo
-inputImagem.addEventListener("change", (e) => lerNotaComIA(e.target.files[0]));
-
-// Botão Colar Texto (Sua função original)
-bColar.onclick = async () => {
-    try {
-        const texto = await navigator.clipboard.readText();
-        echave.value = texto.replace(/[^0-9]/g, '');
-        verificar();
-    } catch (erro) {
-        alert("Não foi possível colar o conteúdo");
-    }
-}
-
-echave.addEventListener("input", () => { verificar(); });
-
-
 
 
 const echave = document.getElementById("chave");
